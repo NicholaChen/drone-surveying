@@ -10,7 +10,6 @@ from pupil_apriltags import Detector
 from scipy.interpolate import CubicSpline
 from scipy.signal import correlate, correlation_lags
 import numpy as np
-from mpl_axes_aligner import align
 
 _RED = '\033[31m'
 _GREEN = '\033[32m'
@@ -271,8 +270,6 @@ class DroneData:
                 ax2.set_ylabel('X Coordinate (px)')
                 ax2.plot(video_interpolated_t + self.time_offsets[video], aprilTag_positions[0], label='Video X', color='r')
 
-                align.yaxes(axs[0], 0, ax2, 0)
-
 
                 axs[1].plot(flight_csv_interpolated_t, flight_positions[1], label='Flight Y', color='b')
                 axs[1].plot([],[], label='Video Y', color='r')  # Placeholder for Video Y
@@ -284,7 +281,6 @@ class DroneData:
                 ax3.set_ylabel('Y Coordinate (px)')
                 ax3.plot(video_interpolated_t + self.time_offsets[video], aprilTag_positions[1], label='Video Y', color='r')
 
-                align.yaxes(axs[1], 0, ax3, 0)
                 fig.tight_layout()
                 fig.show()
 
